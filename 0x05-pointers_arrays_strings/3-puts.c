@@ -1,17 +1,16 @@
 #include "main.h"
-
 /**
- * _puts - Prints a string
- * @str: char
+ * _puts - point entry
+ *@str: integer
+ * Return: 0
  */
-
 void _puts(char *str)
 {
-	int x;
+	int a;
 
-	for (x = 0; str[x] != '\0'; x++)
-	{
-		_putchar(*(str + x));
+	for (a = 0; str[a] != '\0'; a++)
+{
+		_putchar(str[a]);
 	}
 	_putchar('\n');
 }
