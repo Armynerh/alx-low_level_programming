@@ -1,24 +1,15 @@
+#include "main.h"
 
-#include <stdio.h>
-
+/**
+ * main - check the code for Holberton School students.
+ *
+ * Return: Always 0.
+ */
 int main(void)
 {
-  int n;
-  int a[5];
-  int *p;
+    char *str;
 
-  a[2] = 1024;
-  p = &n;
-  /*
-   * write your line of code here...
-   * Remember:
-   * - you are not allowed to use a
-   * - you are not allowed to modify p
-   * - only one statement
-   * - you are not allowed to code anything else than this line of code
-   */
-  ;
-  /* ...so that this prints 98\n */
-  printf("a[2] = %d\n", a[2]);
-  return (0);
+    str = "I do not fear computers. I fear the lack of them - Isaac Asimov";
+    print_rev(str);
+    return (0);
 }
