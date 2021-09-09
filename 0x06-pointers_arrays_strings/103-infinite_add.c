@@ -1,47 +1,44 @@
-#include <stdio.h>
 #include "main.h"
+#include <stdio.h>
 
 /**
- * print_buffer - prints a buffer in a very particular format
+ * print_buffer - prints string buffer
+ * @b: the buffer
+ * @size: size of buffer to print
  *
- * @b: buffer to print through
- * @size: amount of bytes to go through buffer
  * Return: void
  */
 void print_buffer(char *b, int size)
 {
-	int i, count = 0, limit = size;
+	int o = 0, i, j;
 
-	if (size % 10 != 0)
-		limit = ((size / 10) + 1) * 10;
 	if (size <= 0)
 	{
 		printf("\n");
 		return;
 	}
-	for (i = 0; i < limit; i++)
+	while (o < size)
 	{
-		if (count++ % 10 == 0)
+		j = size - o < 10 ? size - o : 10;
+		printf("%08x: ", o);
+		for (i = 0; i < 10; i++)
 		{
-			printf("%08x: ", i);
+			if (i < j)
+				printf("%02x", *(b + o + i));
+			else
+				printf("  ");
+			if (i % 2)
+				printf(" ");
 		}
-		if (i < size)
-			printf("%02x", *(b + i));
-		else
-			printf("  ");
-		if (i % 2 != 0)
-			printf(" ");
-		if (count == 10)
+		for (i = 0; i < j; i++)
 		{
-			for (count = i - 9; count <= i; count++)
-			{
-				if (*(b + count) > 31 && count < size)
-					printf("%c", *(b + count));
-				else if (count < size)
-					printf(".");
-			}
-			printf("\n");
-			count = 0;
+			int c = *(b + o + i);
+
+			if (c < 32 || c > 132)
+				c = '.';
+			printf("%c", c);
 		}
+		printf("\n");
+		o += 10;
 	}
 }
