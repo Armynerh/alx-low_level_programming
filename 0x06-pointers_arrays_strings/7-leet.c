@@ -1,29 +1,29 @@
-#include "holberton.h"
-/**
- * leet  - convert to leet 1733 code
- *@s:integer
- *
- * Return: s
- */
-char *leet(char *s)
+#include "main.h"
 
+/**
+ * leet - Encodes a string to 1337.
+ * @st: The string to be encoded.
+ *
+ * Return: A pointer to the encoded string.
+ */
+char *leet(char *st)
 {
-	int j, i;
+	int r, x;
 
 	char leet[10] = "aAeEoOtTlL";
 	char num[10] = "4433007711";
 
 
-	for (j = 0; s[j] != '\0'; j++)
+	for (r = 0; st[r] != '\0'; r++)
 	{
-		for (i = 0; i < 10; i++)
+		for (x = 0; x < 10; x++)
 		{
-			if (s[j] == leet[i])
+			if (st[r] == leet[x])
 			{
-				s[j] = num[i];
+				st[r] = num[x];
 			}
 		}
 
 	}
-	return (s);
+	return (st);
 }
