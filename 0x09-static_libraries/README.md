@@ -1,0 +1,3 @@
+ranlib
+nm
+ar
