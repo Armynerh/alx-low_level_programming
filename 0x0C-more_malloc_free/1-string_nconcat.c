@@ -1,44 +1,56 @@
+#include "holberton.h"
 #include <stdlib.h>
-#include "main.h"
 
 /**
- * *string_nconcat - concatenates n bytes of a string to another string
- * @s1: string to append to
- * @s2: string to concatenate from
- * @n: number of bytes from s2 to concatenate to s1
- *
- * Return: pointer to the resulting string
+ * _strlen - string length
+ * @str: string
+ * Return: length string
+ * *string_nconcat - string concatenation
+ * @s1: char 1
+ * @s2: char 2
+ * @n: number
+ * Return: new string
  */
+unsigned int _strlen(char *str)
+{
+	unsigned int con = 0;
+
+	while (str[con] != 0)
+		con++;
+	return (con);
+}
+
+
 char *string_nconcat(char *s1, char *s2, unsigned int n)
 {
-	char *s;
-	unsigned int i = 0, j = 0, len1 = 0, len2 = 0;
+	char *newstrn;
+	unsigned int strlen_s1;
+	unsigned int strlen_s2;
+	unsigned int _malloc, i;
 
-	while (s1 && s1[len1])
-		len1++;
-	while (s2 && s2[len2])
-		len2++;
+	if (s1 == NULL)
+		s1 = "";
+	if (s2 == NULL)
+		s2 = "";
 
-	if (n < len2)
-		s = malloc(sizeof(char) * (len1 + n + 1));
+	strlen_s1 = _strlen(s1);
+	strlen_s2 = _strlen(s2);
+
+	if (n >= strlen_s2)
+		_malloc = strlen_s1 + strlen_s2;
 	else
-		s = malloc(sizeof(char) * (len1 + len2 + 1));
+		_malloc = strlen_s1 + n;
 
-	if (!s)
+	newstrn = malloc(sizeof(char) * (_malloc + 1));
+	if (newstrn == NULL)
 		return (NULL);
-
-	while (i < len1)
+	for (i = 0; i < _malloc; i++)
 	{
-		s[i] = s1[i];
-		i++;
+		if (i < strlen_s1)
+			newstrn[i] = s1[i];
+		else
+			newstrn[i] = s2[i - strlen_s1];
 	}
-
-	while (n < len2 && i < (len1 + n))
-		s[i++] = s2[j++];
-
-	while (n >= len2 && i < (len1 + len2))
-		s[i++] = s2[j++];
-
-	s[i] = '\0';
-
-	return (s);
+	newstrn[i] = '\0';
+	return (newstrn);
+}
